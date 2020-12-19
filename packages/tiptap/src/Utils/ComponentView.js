@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { defineComponent } from 'vue'
 
 import { getMarkRange } from 'tiptap-utils'
 
@@ -13,6 +13,8 @@ export default class ComponentView {
     decorations,
     getPos,
   }) {
+    // eslint-disable-next-line no-console
+    console.log('create component')
     this.component = component
     this.editor = editor
     this.extension = extension
@@ -29,7 +31,7 @@ export default class ComponentView {
   }
 
   createDOM() {
-    const Component = Vue.extend(this.component)
+    const Component = defineComponent(this.component)
     const props = {
       editor: this.editor,
       node: this.node,
@@ -78,22 +80,18 @@ export default class ComponentView {
   }
 
   updateComponentProps(props) {
-    if (!this.vm._props) {
+    if (!this.vm._.props) {
       return
     }
 
     // Update props in component
     // TODO: Avoid mutating a prop directly.
     // Maybe there is a better way to do this?
-    const originalSilent = Vue.config.silent
-    Vue.config.silent = true
-
     Object.entries(props).forEach(([key, value]) => {
-      this.vm._props[key] = value
+      this.vm._.props[key] = value
     })
     // this.vm._props.node = node
     // this.vm._props.decorations = decorations
-    Vue.config.silent = originalSilent
   }
 
   updateAttrs(attrs) {
@@ -186,7 +184,7 @@ export default class ComponentView {
   }
 
   destroy() {
-    this.vm.$destroy()
+    // this.vm.$destroy()
   }
 
 }

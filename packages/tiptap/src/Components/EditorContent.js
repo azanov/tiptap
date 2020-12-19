@@ -1,5 +1,6 @@
-export default {
+import { h } from 'vue'
 
+export default {
   props: {
     editor: {
       default: null,
@@ -21,12 +22,11 @@ export default {
     },
   },
 
-  render(createElement) {
-    return createElement('div')
+  render() {
+    return h('div')
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     this.editor.element = this.$el
   },
-
 }

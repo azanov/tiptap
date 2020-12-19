@@ -46,7 +46,7 @@ export default {
       return null
     }
 
-    return this.$scopedSlots.default({
+    return this.$slots.default({
       focused: this.focused,
       focus: this.editor.focus,
       commands: this.editor.commands,
