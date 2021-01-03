@@ -1,6 +1,7 @@
 {
   "name": "tiptap-packages",
   "private": true,
+  "version": "3.0.0",
   "workspaces": [
     "packages/*"
   ],
